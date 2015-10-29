@@ -1,0 +1,7 @@
+foo:
+  provider: twitter
+  uid: 123545
+  name: Eric Cartman
+  image: http://placehold.it/100x100
+  token: XXX
+  secret: XXX
