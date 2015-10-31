@@ -2,12 +2,12 @@ class SessionsController < ApplicationController
 
 	def create
 		user = ::Authentication.user_from_auth_hash(auth_hash)
-		session[:user_id] = user.id
+		cookies.signed[:user_id] = user.id
 		redirect_to root_path, notice: 'Signed in successfully'
 	end
 
 	def destroy
-		session[:user_id] = nil
+		cookies.delete(:user_id)
 		redirect_to login_path, notice: 'Signed out successfully. Bye bye!'
 	end
 

@@ -1,23 +1,19 @@
 require 'rails_helper'
 
-feature 'User twitter feed', js: true do
+feature 'User twitter feed' do
 	fixtures :users
 
 	let(:tweets) do
-    [
-			{id: 1, text: 'foo'},
-			{id: 2, text: 'bar'}
-		]
+    [{id: 1, text: 'foo'}, {id: 2, text: 'bar'}]
 	end
 
 	before do
-    page.set_rack_session(user_id: users(:foo).id)
-
-		allow_any_instance_of(FeedController).to receive(:tweets).and_return(tweets)
+		allow_any_instance_of(TweetsController).to receive(:tweets).and_return(tweets)
 	end
 
-	scenario 'shows users twitter feed' do
-		visit root_path
+	scenario 'shows users twitter feed', js: true do
+		visit login_path
+		click_link 'Sign in with twitter'
 		expect(page).to have_content 'foo'
 		expect(page).to have_content 'bar'
 	end

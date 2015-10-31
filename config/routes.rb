@@ -4,9 +4,7 @@ Rails.application.routes.draw do
 
 	get 'auth/twitter/callback', to: 'sessions#create'
 
-	resources :feed, only: :index do
-		get :stream, on: :collection
-	end
+	resources :tweets, only: :index
 
-  root 'feed#index'
+  root 'home#index'
 end

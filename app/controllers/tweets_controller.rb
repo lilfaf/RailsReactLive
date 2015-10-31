@@ -1,9 +1,9 @@
-class FeedController < ApplicationController
-	before_filter :require_login
+class TweetsController < ApplicationController
+	before_filter :require_authentication
 
-	def stream
+	def index
 		render json: tweets
-  end
+	end
 
 	private
 

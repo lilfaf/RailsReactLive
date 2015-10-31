@@ -29,7 +29,6 @@ group :test do
   gem 'rspec-rails', '~> 3.0'
 	gem 'capybara'
 	gem 'shoulda'
-  gem 'rack_session_access'
 	gem 'poltergeist'
 end
 
@@ -42,4 +41,5 @@ gem 'omniauth-twitter'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'actioncable', github: 'rails/actioncable'
 gem 'puma'
-gem 'twitter'
+gem 'twitter', '5.14.0'
+gem 'celluloid-io'

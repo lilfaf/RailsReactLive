@@ -6,11 +6,13 @@ class ApplicationController < ActionController::Base
 	private
 
 	def current_user
-		@current_user ||= User.find(session[:user_id]) if session[:user_id]
+		@current_user ||= if cookies.has_key? :user_id
+												User.find_by_id cookies.signed[:user_id]
+											end
 	end
 	helper_method :current_user
 
-	def require_login
+	def require_authentication
 		unless current_user
 			redirect_to login_path, alert: 'You must login with twitter!'
 		end

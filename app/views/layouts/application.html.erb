@@ -20,7 +20,10 @@
 				<%= link_to 'RailsReactLive', root_path, class: 'navbar-brand' %>
 			</div>
 			<%- if current_user %>
-				<p class="navbar-text">Signed in as <%= current_user.name %></p>
+				<p class="navbar-text">
+				Signed in as <%= current_user.name %></p>
+
+				<%= image_tag current_user.image, class: 'img-circle navbar-avabar' %>
 				<p class="navbar-text navbar-right">
 				<%= link_to 'Sign out', logout_path, method: :delete %>
 				</p>
