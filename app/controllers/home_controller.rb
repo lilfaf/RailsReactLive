@@ -1,3 +1,3 @@
 class HomeController < ApplicationController
-	before_filter :require_authentication
+  before_filter :require_authentication
 end

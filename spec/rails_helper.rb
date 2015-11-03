@@ -23,22 +23,22 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
 
-	auth_hash = {
-	  provider: 'twitter',
-		uid: '123545',
-		info: {
-			name: 'Eric Cartman',
-			image: 'http://placehold.it/100x100'
-		},
-		credentials: {token: 'XXX', secret: 'XXX'}
-	}
+  auth_hash = {
+    provider: 'twitter',
+    uid: '123545',
+    info: {
+      name: 'Eric Cartman',
+      image: 'http://placehold.it/100x100'
+    },
+    credentials: {token: 'XXX', secret: 'XXX'}
+  }
 
-	config.before do
-		OmniAuth.config.test_mode = true
-		OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(auth_hash)
-	end
+  config.before do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(auth_hash)
+  end
 
-	config.after do
-	  OmniAuth.config.mock_auth[:twitter] = nil
-	end
+  config.after do
+    OmniAuth.config.mock_auth[:twitter] = nil
+  end
 end

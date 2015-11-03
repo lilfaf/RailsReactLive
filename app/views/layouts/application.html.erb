@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RailsReactLive</title>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	<%= csrf_meta_tags %>
+  <title>RailsReactLive</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 </head>
 <body>
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<%= link_to 'RailsReactLive', root_path, class: 'navbar-brand' %>
-			</div>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to 'RailsReactLive', root_path, class: 'navbar-brand' %>
+      </div>
 
-			<div class="collapse navbar-collapse" id="navbar-collapse">
-				<%- if current_user %>
-					<p class="navbar-text">
-					Signed in as <%= current_user.name %>
-				  </p>
-				  <%= image_tag current_user.image, class: 'img-circle navbar-avatar' %>
-				  <ul class="nav navbar-nav navbar-right">
-					  <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
-				  </ul>
-			  <% end %>
-		  </div>
-		</div>
-	</nav>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <%- if current_user %>
+          <p class="navbar-text">
+          Signed in as <%= current_user.name %>
+          </p>
+          <%= image_tag current_user.image, class: 'img-circle navbar-avatar' %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </nav>
 
-	<div class="container">
-		<%= render 'shared/flash_messages' %>
-		<%= yield %>
-	</div>
+  <div class="container">
+    <%= render 'shared/flash_messages' %>
+    <%= yield %>
+  </div>
 
 </body>
 </html>

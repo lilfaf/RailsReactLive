@@ -16,20 +16,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
-	gem 'foreman'
+  gem 'foreman'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
-	gem 'quiet_assets'
+  gem 'quiet_assets'
 end
 
 group :test do
   gem 'rspec-rails', '~> 3.0'
-	gem 'capybara'
-	gem 'shoulda'
-	gem 'poltergeist'
+  gem 'capybara'
+  gem 'shoulda'
+  gem 'poltergeist'
 end
 
 source 'https://rails-assets.org' do
