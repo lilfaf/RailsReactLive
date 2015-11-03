@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -22,21 +22,15 @@
 
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 				<%- if current_user %>
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<p class="navbar-text">
-							Signed in as <%= current_user.name %>
-						</p>
-						<%= image_tag current_user.image, class: 'img-circle navbar-avatar' %>
-					</li>
-					<li>
-						<p class="navbar-text">
-							<%= link_to 'Sign out', logout_path, method: :delete %>
-						</p>
-					</li>
-				</ul>
-				<% end %>
-			</div>
+					<p class="navbar-text">
+					Signed in as <%= current_user.name %>
+				  </p>
+				  <%= image_tag current_user.image, class: 'img-circle navbar-avatar' %>
+				  <ul class="nav navbar-nav navbar-right">
+					  <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
+				  </ul>
+			  <% end %>
+		  </div>
 		</div>
 	</nav>
 

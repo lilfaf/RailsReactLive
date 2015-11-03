@@ -1,5 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
+
+body {
+  padding-top: 70px;
+	padding-bottom: 20px;
+}
 
 .navbar-avatar {
   width: 30px;

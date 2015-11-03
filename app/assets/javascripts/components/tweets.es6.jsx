@@ -3,7 +3,7 @@ class Tweets extends React.Component {
 	  var createTweet = (tweet) => {
 		  return (
 		  	<li key={tweet.id} className="list-group-item">
-		  		<Tweet text={tweet.text}/>
+					<Tweet text={tweet.text} avatar={tweet.user.profile_image_url}/>
 				</li>
 	    );
     };
