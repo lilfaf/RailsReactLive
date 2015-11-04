@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.delete(:user_id)
-    redirect_to login_path, notice: 'Signed out successfully. Bye bye!'
+    redirect_to root_path, notice: 'Signed out successfully. Bye bye!'
   end
 
   private

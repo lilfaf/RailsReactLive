@@ -19,7 +19,7 @@ class Tweetter::Worker
     client.user do |object|
       case object
       when Twitter::Tweet
-        ActionCable.server.broadcast("tweets_#{user.id}", object)
+        ActionCable.server.broadcast("tweets_user_#{user.id}", object)
       when Twitter::Streaming::StallWarning
         warn object.message
       end

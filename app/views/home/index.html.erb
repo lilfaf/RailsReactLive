@@ -1,8 +1,20 @@
 <div class="row">
   <div class="col-sm-6 text-center">
-    <%= gravatar_image class: "img-circle" %>
+    <%= gravatar_image class: "img-circle gravatar" %>
   </div>
   <div class="col-sm-6">
-    <%= react_component("TweetsContainer", tweetsPath: tweets_path) %>
+    <%- if current_user %>
+      <%= react_component("TweetsContainer", tweetsPath: tweets_path) %>
+    <% else %>
+      <div class="alert alert-warning">
+        <strong>IT'S DEMO TIME!</strong><br>
+        Please sign in with your twitter account to access a live stream of your timeline.
+      </div>
+
+      <%= link_to 'auth/twitter', class: 'btn btn-twitter' do %>
+        <%= fa_icon 'twitter' %>
+        Sign in with twitter
+      <% end %>
+    <% end %>
   </div>
 </div>

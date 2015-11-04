@@ -7,6 +7,20 @@
   margin: 10px 0px;
 }
 
+.btn-twitter {
+  @extend .btn-info, .btn-lg;
+  i {
+    font-size: 1.5em;
+  }
+}
+
+// ----- ABOUT ME
+
+.gravatar {
+  width: 120px;
+  border:2px solid #e5e7e8;
+}
+
 // ----- TWEETS
 
 .twt-wrapper {

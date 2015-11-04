@@ -15,8 +15,9 @@ feature 'User twitter feed' do
   end
 
   scenario 'shows users twitter feed', js: true do
-    visit login_path
+    visit root_path
     click_link 'Sign in with twitter'
+    expect(page).to have_content 'Twitter Live Feed'
     expect(page).to have_content 'foo'
     expect(page).to have_content 'bar'
   end
