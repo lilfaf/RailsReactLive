@@ -1,4 +1,7 @@
 <div class="row">
+  <div class="col-sm-6 text-center">
+    <%= gravatar_image class: "img-circle" %>
+  </div>
   <div class="col-sm-6">
     <%= react_component("TweetsContainer", tweetsPath: tweets_path) %>
   </div>

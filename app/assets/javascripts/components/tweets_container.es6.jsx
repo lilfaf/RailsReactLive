@@ -1,23 +1,7 @@
-function topPosition(domElt) {
-  if (!domElt) {
-    return 0;
-  }
-  return domElt.offsetTop + topPosition(domElt.offsetParent);
-}
-
-function getScrollTop() {
-  if (window.pageYOffset !== undefined) {
-    return window.pageYOffset;
-  } else {
-    return (document.documentElement || document.body.parentNode || document.body).scrollTop;
-  }
-}
-
 class TweetsContainer extends React.Component {
 
   constructor() {
     super();
-
     this.scrollListener = this.scrollListener.bind(this);
 
     this.state = {
@@ -47,9 +31,6 @@ class TweetsContainer extends React.Component {
 
   setupSubscription() {
     App.tweets = App.cable.subscriptions.create('TweetsChannel', {
-      connected: function() {
-        console.log("connected to tweets channel");
-      },
       received: (tweet) => {
         let tweets = this.state.tweets;
         tweets.unshift(tweet);
@@ -62,55 +43,55 @@ class TweetsContainer extends React.Component {
   fetchPage() {
     if (this.state.loading) return;
 
-    this.setState({
-      loading: true,
-      page: this.state.page + 1
-    },
-    () => {
-      $.getJSON(
-        this.props.tweetsPath,
-        {page: this.state.page},
-        (data) => {
-          let tweets = this.state.tweets;
-          data.map((tweet) => {
-            if (tweets.indexOf(tweet) == -1) tweets.push(tweet);
-          });
+    let nextPage = this.state.page + 1;
 
-          this.setState({tweets: tweets});
-        }
-      )
-      .fail((error) => {
-        console.log(`Error occurred when loading tweets: ${error.responseText}`);
-      })
-      .always(() => {
-        this.setState({loading: false});
-      });
+    $.getJSON(this.props.tweetsPath, {page: nextPage}, (data) => {
+      let tweets = this.state.tweets.concat(data);
+      // remove duplicated tweets
+      tweets = _.uniq(tweets, (tweet) => { return tweet.id; });
+
+      this.setState({tweets: tweets});
+    })
+    .fail((error) => {
+      console.log(error.responseText);
+    })
+    .always(() => {
+      this.setState({loading: false});
     });
+
+    this.setState({loading: true, page: nextPage})
   }
 
   scrollListener() {
-    let el = ReactDOM.findDOMNode(this);
-    if (topPosition(el) + el.offsetHeight - getScrollTop() - window.innerHeight < 100) {
+    let el = ReactDOM.findDOMNode(this.refs.tweets);
+    if ((el.scrollHeight - el.scrollTop) - el.offsetHeight < 100) {
       this.detachScrollListener();
       this.fetchPage();
     }
   }
 
   attachScrollListener() {
-    window.addEventListener('scroll', this.scrollListener);
-    window.addEventListener('resize', this.scrollListener);
+    this.refs.tweets.addEventListener('scroll', this.scrollListener);
+    this.refs.tweets.addEventListener('resize', this.scrollListener);
   }
 
   detachScrollListener() {
-    window.removeEventListener('scroll', this.scrollListener);
-    window.removeEventListener('resize', this.scrollListener);
+    this.refs.tweets.removeEventListener('scroll', this.scrollListener);
+    this.refs.tweets.removeEventListener('resize', this.scrollListener);
   }
 
   render() {
     return (
-      <div>
-        <Tweets tweets={this.state.tweets} />
-        <LoadingIndicator loading={this.state.loading} />
+      <div className='twt-wrapper'>
+        <div className='panel panel-info'>
+          <div className='panel-heading'>
+            Twitter Live Feed
+          </div>
+          <div className='panel-body' ref='tweets'>
+            <Tweets tweets={this.state.tweets}  />
+            <LoadingIndicator loading={this.state.loading} />
+          </div>
+        </div>
       </div>
     );
   }

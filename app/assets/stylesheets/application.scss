@@ -2,12 +2,27 @@
 @import "bootstrap";
 @import "font-awesome";
 
-body {
-  padding-top: 70px;
-  padding-bottom: 20px;
-}
-
 .navbar-avatar {
   width: 30px;
   margin: 10px 0px;
+}
+
+// ----- TWEETS
+
+.twt-wrapper {
+
+  .panel .panel-body {
+    height: 70vh;
+    overflow: auto;
+  }
+
+  .media-list .media {
+    border-bottom: 1px dashed #efefef;
+    margin-bottom: 25px;
+
+    img {
+      width: 50px;
+      border:2px solid #e5e7e8;
+    }
+  }
 }

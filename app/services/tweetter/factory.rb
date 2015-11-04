@@ -1,4 +1,4 @@
-class Twitter::Factory
+class Tweetter::Factory
 
   STREAM_CONN_OPTS = {
     tcp_socket_class: Celluloid::IO::TCPSocket,
@@ -8,7 +8,7 @@ class Twitter::Factory
   class << self
 
     def streaming_client(user)
-      Twitter::Streaming::Client.new client_config(user).merge(STREAM_CONN_OPTS)
+       Twitter::Streaming::Client.new client_config(user).merge(STREAM_CONN_OPTS)
     end
 
     def rest_client(user)

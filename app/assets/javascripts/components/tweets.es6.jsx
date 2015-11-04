@@ -2,14 +2,14 @@ class Tweets extends React.Component {
   render () {
     var createTweet = (tweet) => {
       return (
-        <li key={tweet.id} className="list-group-item">
-          <Tweet text={tweet.text} avatar={tweet.user.profile_image_url}/>
+        <li key={tweet.id} className="media">
+          <Tweet text={tweet.text} user={tweet.user}/>
         </li>
       );
     };
 
     return (
-      <ul className="list-group">
+      <ul className="media-list">
         { this.props.tweets.map(createTweet) }
       </ul>
     );

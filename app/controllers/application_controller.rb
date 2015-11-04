@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= if cookies.has_key? :user_id
-                        User.find_by_id cookies.signed[:user_id]
-                      end
+    @current_user ||= User.find_by_id cookies.signed[:user_id]
   end
   helper_method :current_user
 

@@ -16,7 +16,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
-  gem 'foreman'
 end
 
 group :development do
@@ -34,6 +33,7 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-es5-shim'
+  gem 'rails-assets-underscore'
 end
 
 gem 'react-rails', '~> 1.4.0'
@@ -44,3 +44,4 @@ gem 'puma'
 gem 'twitter', '5.14.0'
 gem 'celluloid-io'
 gem 'font-awesome-rails'
+gem 'gravatar_image_tag'

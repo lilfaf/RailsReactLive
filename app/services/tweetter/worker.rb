@@ -1,11 +1,12 @@
-class Twitter::Worker
+class Tweetter::Worker
   include Celluloid::IO
+  include Celluloid::Logger
 
   attr_reader :client, :user
 
   def initialize(user)
     @user = user
-    @client = Twitter::Factory.streaming_client(user)
+    @client = Tweetter::Factory.streaming_client(user)
   end
 
   def run
@@ -16,8 +17,11 @@ class Twitter::Worker
 
   def user_stream
     client.user do |object|
-      if object.is_a?(Twitter::Tweet)
+      case object
+      when Twitter::Tweet
         ActionCable.server.broadcast("tweets_#{user.id}", object)
+      when Twitter::Streaming::StallWarning
+        warn object.message
       end
     end
   end
