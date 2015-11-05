@@ -1,5 +1,8 @@
 module GravatarHelper
   def gravatar_image(options={})
-    image_tag gravatar_image_url(Rails.application.secrets.gravatar_email, size: 200), options
+    size = options.delete(:size) || 200
+    hash = Digest::MD5.hexdigest(Rails.application.secrets.gravatar_email)
+
+    image_tag "http://gravatar.com/avatar/#{hash}?size=#{size}", options
   end
 end
