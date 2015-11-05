@@ -76,4 +76,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Configure allowed origin for action cable websocket
+  config.action_cable.allowed_request_origins = 'http://recruitme.seshook.com'
 end
