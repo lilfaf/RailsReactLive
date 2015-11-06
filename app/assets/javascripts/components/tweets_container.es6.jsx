@@ -4,6 +4,8 @@ class TweetsContainer extends React.Component {
     super();
     this.scrollListener = this.scrollListener.bind(this);
 
+    this.consumer = Cable.createConsumer(`ws://${window.location.host}/websocket`);
+
     this.state = {
       tweets: [],
       page: 0,
@@ -26,11 +28,11 @@ class TweetsContainer extends React.Component {
 
   componentWillUnmount() {
     this.detachScrollListener();
-    App.tweets.unsubscribe();
+    this.tweets.unsubscribe();
   }
 
   setupSubscription() {
-    App.tweets = App.cable.subscriptions.create('TweetsChannel', {
+    this.channel = this.consumer.subscriptions.create('TweetsChannel', {
       received: (tweet) => {
         let tweets = this.state.tweets;
         tweets.unshift(tweet);

@@ -14,9 +14,9 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require cable
 //= require es5-shim
 //= require underscore
 //= require react
 //= require react_ujs
 //= require components
-//= require_tree .
