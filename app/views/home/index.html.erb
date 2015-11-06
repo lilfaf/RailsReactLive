@@ -1,26 +1,28 @@
 <div class="row">
   <div class="col-sm-6 ">
     <div class="well clearfix">
-      This an example application using Ruby on Rails and React components
+
+      <p><%= link_to "RailsReactLive", "https://github.com/lilfaf/RailsReactLive" %>  is a simple web-based Twitter client. It consumes the authenticated user timeline and notifies for new statuses in real-time over websockets.</p>
+      <p>The main goal of this application was to demonstrate my skills as a web developer and software engineer for potential recruiters. But in the meantime it turned out to be an experiment with the <%= link_to "Action Cable framework", "https://github.com/rails/actioncable" %> due in the upcoming Rails 5 release.</p>
+      <p>Find out more about this application browsing the <%= link_to "source code", "https://github.com/lilfaf/RailsReactLive" %> available on Github</p>
+
       <hr>
-      <h2>About Me</h2>
-      <%= gravatar_image class: "img-circle gravatar" %>
-      <hr>
+      <p class="pull-left">Made with <i class="fa fa-heart text-danger"></i> by <%= gravatar_image class: "img-circle gravatar", size: "34" %></p>
       <div class="social-links pull-right">
         <%= link_to "https://github.com/lilfaf", target: "_blank" do %>
-          <span class="fa-stack fa-2x">
+          <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-github-alt fa-stack-1x fa-inverse"></i>
           </span>
         <% end %>
         <%= link_to "https://twitter.com/semtazone", target: "_blank" do %>
-          <span class="fa-stack fa-2x">
+          <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
           </span>
         <% end %>
         <%= link_to "https://www.linkedin.com/profile/view?id=AAIAAAWM3HUBeriJSmVOEqespLDLVlRCKD9yBWQ", target: "_blank" do %>
-          <span class="fa-stack fa-2x">
+          <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
           </span>
@@ -28,6 +30,7 @@
       </div>
     </div>
   </div>
+
   <div class="col-sm-6">
     <%- if current_user %>
       <%= react_component("TweetsContainer", tweetsPath: tweets_path) %>
