@@ -21,6 +21,18 @@
   border:2px solid #e5e7e8;
 }
 
+.social-links {
+  a {
+    text-decoration: none;
+    color: #6E9DB5;
+    &:hover {
+      color: #31708F;
+    }
+  }
+}
+
+hr { border-bottom: 1px solid #eeeeee;}
+
 // ----- TWEETS
 
 .twt-wrapper {
